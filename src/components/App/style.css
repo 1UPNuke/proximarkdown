@@ -1,0 +1,17 @@
+body {
+    color: var(--font-color);
+}
+
+#root {
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr;
+    grid-template-rows: repeat(3, min-content) auto min-content;
+    grid-template-areas: 
+        "toolbar toolbar toolbar"
+        "tree tabs tabs"
+        "tree crumbs crumbs"
+        "tree editor previewer"
+        "footer footer footer";
+    place-items: stretch;
+    place-content: stretch;
+}

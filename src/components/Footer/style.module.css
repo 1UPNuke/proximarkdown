@@ -1,0 +1,5 @@
+.footer {
+    background-color: var(--footer-bg);
+    grid-area: footer;
+    height: min-content;
+}

@@ -1,0 +1,10 @@
+:root {
+    --font-color: white;
+    --toolbar-bg: darkred;
+    --tree-bg: darkgreen;
+    --tabs-bg: darkblue;
+    --crumbs-bg: darkcyan;
+    --editor-bg: darkmagenta;
+    --preview-bg: olive;
+    --footer-bg: #000;
+}

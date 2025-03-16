@@ -1,0 +1,5 @@
+.crumbs {
+    background-color: var(--crumbs-bg);
+    grid-area: crumbs;
+    height: min-content;
+}

@@ -1,0 +1,5 @@
+.tabs {
+    background-color: var(--tabs-bg);
+    grid-area: tabs;
+    height: min-content;
+}

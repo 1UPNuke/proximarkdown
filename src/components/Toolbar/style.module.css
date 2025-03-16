@@ -1,0 +1,5 @@
+.toolbar {
+    background-color: var(--toolbar-bg);
+    grid-area: toolbar;
+    height: min-content;
+}

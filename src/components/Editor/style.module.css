@@ -1,0 +1,4 @@
+.editor {
+    background-color: var(--editor-bg);
+    grid-area: editor;
+}

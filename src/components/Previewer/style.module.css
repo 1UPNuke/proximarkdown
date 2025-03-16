@@ -1,0 +1,4 @@
+.previewer {
+    background-color: var(--preview-bg);
+    grid-area: previewer;
+}

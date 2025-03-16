@@ -1,0 +1,4 @@
+.tree {
+    background-color: var(--tree-bg);
+    grid-area: tree;
+}
