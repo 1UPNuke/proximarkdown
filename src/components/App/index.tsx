@@ -1,3 +1,4 @@
+import { Context, createContext } from "preact";
 import "./reset.css";
 import "./style.css";
 import ToolBar from "../Toolbar";
@@ -7,22 +8,40 @@ import Previewer from "../Previewer";
 import Footer from "../Footer";
 import Tabs from "../Tabs";
 import Breadcrumbs from "../Breadcrumbs";
+import { listen } from "@tauri-apps/api/event";
+import { Dispatch, StateUpdater, useState } from "preact/hooks";
+import MarkdownFile from "../../classes/MarkdownFile";
 
-interface AppProps {
-    tree? : boolean;
-    previewer? : boolean;
-}
+export const OpenedFiles = createContext<{
+    openedFiles: MarkdownFile[],
+    setOpenedFiles: Dispatch<StateUpdater<MarkdownFile[]>> | ((..._: any)=>void)
+}>({openedFiles: [], setOpenedFiles: (..._: any)=>{}});
 
-const App = (props : AppProps) => {
+const App = () => {
+    const [openedFiles, setOpenedFiles] = useState<MarkdownFile[]>([new MarkdownFile()]);
+
+    listen<MarkdownFile>("open-file", (event) => {
+        console.log(event);
+        let openedFile = new MarkdownFile(
+            event.payload.name,
+            event.payload.path,
+            event.payload.modified,
+            event.payload.content
+        );
+        setOpenedFiles([openedFile, ...openedFiles])
+    })
+
     return (
         <>
+            <Tree/>
             <ToolBar/>
-            {props.tree && <Tree/>}
-            <Tabs/>
-            <Breadcrumbs path="Breadcrumbs"/>
-            <Editor content=""/>
-            {props.previewer && <Previewer/>}
-            <Footer/>
+            <OpenedFiles.Provider value={{openedFiles, setOpenedFiles}}>
+                <Tabs/>
+                <Breadcrumbs/>
+                <Editor/>
+                <Previewer/>
+                <Footer/>
+            </OpenedFiles.Provider>
         </>
     );
 };
